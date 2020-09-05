@@ -48,6 +48,10 @@ data "aws_lb" "elb" {
   name = "ucc-app"
 }
 
+data "aws_lb_target_group" "elb_tg" {
+  name = "ucc-app-tg"
+}
+
 data "aws_acm_certificate" "default" {
   domain = "*.www.coacerucc.work"
   provider = aws.virginia
@@ -58,6 +62,7 @@ module "codeDeployGroup" {
   app_name     = "ucc-app"
   group_name   = terraform.workspace
   iam_role_arn = data.aws_iam_role.codedeploy.arn
+  elb_tg_name  = data.aws_lb_target_group.elb_tg.name
 }
 
 module "codePipelineApp" {

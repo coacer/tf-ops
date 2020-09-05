@@ -15,4 +15,16 @@ resource "aws_codedeploy_deployment_group" "deploy_group" {
     enabled = true
     events  = ["DEPLOYMENT_FAILURE"]
   }
+
+  # elbトラフィック制御(試験段階はパイプラインの時間が長くなってしまうので無効化)
+  # deployment_style {
+  #   deployment_option = "WITH_TRAFFIC_CONTROL"
+  # }
+  #
+  # load_balancer_info {
+  #   target_group_info {
+  #     name = var.elb_tg_name
+  #   }
+  # }
+
 }

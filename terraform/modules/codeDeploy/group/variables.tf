@@ -12,3 +12,8 @@ variable "iam_role_arn" {
   type = string
   description = "IAMロールのARN"
 }
+
+variable "elb_tg_name" {
+  type = string
+  description = "ELBターゲットグループ名"
+}
